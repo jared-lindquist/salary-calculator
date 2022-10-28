@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="jquery-3.6.1.js"></script>
+    <script src="salary.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Salary Calculator</title>
+</head>
+    <body>
+        <h1>Salary Calculator</h1>
+        <!-- White text, dark grey background text-align center-->
+
+        <h2>Add Employee</h2>
+        <!-- add firstName, lastName, id, title, and annualSalary input fields -->
+        <!-- also need to have the input fields contain greyed out text for the inputs -->
+        
+        <input type="text" id="firstName" placeholder="First Name"name="firstName">
+        <input type="text" id="lastName" placeholder="Last Name"name="lastName">
+        <input type="text" id="ID" placeholder="ID"name="ID">
+        <input type="text" id="title" placeholder="Title"name="title">
+        <input type="text" id="annualSalary" placeholder="Annual Salary"name="annualSalary">
+
+
+        <button type="submit" id="submitBtn">Submit</button>
+
+        <h2>Employees</h2>
+        <!-- Add a table for firstName, lastName, id, title, and annualSalary -->
+
+
+        <table id="employeeTable">
+            <!-- tr means table row: td means table data -->
+            <tr><td>No Entries Yet!</td></tr>
+        </table>
+
+        <h1 id="total-budget">Total Budget</h1>
+             <input type="number" id="total-budget" placeholder="$ Total Budget" name="total-budget">
+    </body>
+</html>
