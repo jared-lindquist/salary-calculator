@@ -3,8 +3,8 @@ $(document).ready(onReady);
 //initialize global variables to be used in functions
 let employees = [];
 let arrayId = 0;
-let totalAnnualSal = 0;
-let monthlySal = 0;
+let totalAnnualSalary = 0;
+let monthlyBudget = 0;
 
 
 function onReady() {
@@ -15,7 +15,7 @@ function onReady() {
     $('#employeeTable').on('click', '.delete-btn', removeEmployee);
 
     render();
-}
+}//end onReady
 
 function addEmployee() {
     console.log('in addEmployee');
@@ -38,9 +38,12 @@ function addEmployee() {
     $('#annualSalary').val('');
     //push entry to global employees array
     employees.push(person);
+
+    //call updateMonthlyBudget function from below
+    updateMonthlyBudget();
     //render to DOM
     render();
-}
+}//end addEmployee
 
 function removeEmployee() {
     //initialize new array for employees not deleted
@@ -49,7 +52,7 @@ function removeEmployee() {
     console.log('in removeEmployee');
 
     //initalize deleteThis with with bling this and the attribute 'id'
-    //of the removeEmployee button
+    //of the removeEmployee button that is clicked
     let deleteThis = $(this).attr('id')
 
 
@@ -64,12 +67,41 @@ for (let person of employees) {
         console.log(person.arrayId, deleteThis);
     }
 }
+
 //se the new value of the employees array to our newly created
 //newEntries array
 employees = newEntries;
 console.log(newEntries);
+
+//update monthlyBudget
+updateMonthlyBudget();
 //render
 render();
+}//end removeEmployee
+
+function updateMonthlyBudget() {
+    //restating our global variables from above
+    monthlyBudget = 0;
+    totalAnnualSalary = 0;
+    //loop through the employees array, updating our 
+    //global monthlyBudget value to += all of the added employee objects
+    //annualSalary divided by 12
+    for (employee of employees) {
+        monthlyBudget += (employee.annualSalary/12);
+    }
+    //converting the monthlyBudget value to a number fixed to two decimal places
+    monthlyBudget = Number(monthlyBudget.toFixed(2));
+     console.log('monthly budget', monthlyBudget);
+    //if else statement checking if the monthlyBudget value
+    //is above or below 20000 and changing the class accordingly
+    if (monthlyBudget > 20000) {
+        $('#monthlyBudget').addClass('overBudget');
+        $('#monthlyBudget').removeClass('underBudget');
+    } else {
+        $('#monthlyBudget').removeClass('overBudget');
+        $('#monthlyBudget').addClass('underBudget');
+    }
+    return;
 }
 
 function render() {
@@ -86,7 +118,7 @@ function render() {
             <td>${person.title}</td>
             <td>${person.annualSalary}</td>
         
-            <td>
+            <td id="remove-column">
             <button id ="${person.arrayId}"class="delete-btn">
                 Remove Employee
             </button>
@@ -95,4 +127,9 @@ function render() {
         `)// dynamically create a remove employee button with the 
           //class delete-btn and an Id matching the object appended to the DOM
     }
-}
+
+    //empty monthlyBudget
+    $('#monthlyBudget').empty();
+    //append updated monthlyBudget value to DOM
+    $('#monthlyBudget').append(` $ ${monthlyBudget}`)
+}//end render
