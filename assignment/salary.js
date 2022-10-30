@@ -26,7 +26,7 @@ function addEmployee() {
         id: $('#ID').val(),
         title: $('#title').val(),
         annualSalary: $('#annualSalary').val(),
-        arrayId: arrayId
+        arrayId: arrayId//global variable from above
     }
     //increment our global arrayId
     arrayId++;
@@ -66,9 +66,9 @@ for (let person of employees) {
         newEntries.push(person);
         console.log(person.arrayId, deleteThis);
     }
-}
+}//end for loop
 
-//se the new value of the employees array to our newly created
+//set the new value of the employees array to our newly created
 //newEntries array
 employees = newEntries;
 console.log(newEntries);
@@ -102,7 +102,7 @@ function updateMonthlyBudget() {
         $('#monthlyBudget').addClass('underBudget');
     }
     return;
-}
+}//end updateMonthlyBudget
 
 function render() {
     //empty the contents of the employeeTable
