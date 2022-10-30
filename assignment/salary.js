@@ -86,8 +86,8 @@ function updateMonthlyBudget() {
     //loop through the employees array, updating our 
     //global monthlyBudget value to += all of the added employee objects
     //annualSalary divided by 12
-    for (employee of employees) {
-        monthlyBudget += (employee.annualSalary/12);
+    for (person of employees) {
+        monthlyBudget += (person.annualSalary/12);
     }
     //converting the monthlyBudget value to a number fixed to two decimal places
     monthlyBudget = Number(monthlyBudget.toFixed(2));
@@ -126,6 +126,7 @@ function render() {
         </tr>
         `)// dynamically create a remove employee button with the 
           //class delete-btn and an Id matching the object appended to the DOM
+          //the arrayID is unique to each employee object added
     }
 
     //empty monthlyBudget
